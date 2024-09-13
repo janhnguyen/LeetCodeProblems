@@ -1,2 +1,2 @@
-# LeetCodeProblems
-LeetCode Problems
+# NeetCode and LeetCode Problems
+
