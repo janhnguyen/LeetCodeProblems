@@ -1,0 +1,101 @@
+class ListNode {
+
+    int val;
+    ListNode next;
+
+    public ListNode(int val) {
+        this.val = val;
+        this.next = null;
+    }
+
+    public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+
+}
+
+class LinkedList {
+
+    private ListNode head;
+    private ListNode tail;
+
+    public LinkedList() {
+        this.head = new ListNode(-1);
+        this.tail = this.head;
+    }
+
+    public int get(int index) {
+        
+        ListNode cur = this.head.next;
+
+        int i = 0;
+
+        while (cur != null) {
+            if (i == index) {
+                return cur.val;
+            }
+            i++;
+            cur = cur.next;
+        }
+
+        return -1;
+
+    }
+
+    public void insertHead(int val) {
+        
+       ListNode newNode = new ListNode(val);
+       newNode.next = head.next;
+       head.next = newNode; 
+
+       if (newNode.next == null) {
+            this.tail = newNode;
+       }
+
+    }
+
+    public void insertTail(int val) {
+
+        this.tail.next = new ListNode(val);
+        this.tail = this.tail.next;
+
+    }
+
+    public boolean remove(int index) {
+
+        ListNode cur = this.head;
+        int i = 0;
+
+        while (i < index && cur != null) {
+            i++;
+            cur = cur.next;
+        }
+
+        if (cur != null && cur.next != null) {
+            if (cur.next == this.tail) {
+                this.tail = cur;
+            }
+            cur.next = cur.next.next;
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public ArrayList<Integer> getValues() {
+
+        ArrayList<Integer> retVal = new ArrayList<Integer>();
+
+        ListNode cur = this.head.next;
+
+        while (cur != null) {
+            retVal.add(cur.val);
+            cur = cur.next;
+        }
+
+        return retVal;
+
+    }
+}
